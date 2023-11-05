@@ -7,8 +7,12 @@ import toast, { Toaster } from "react-hot-toast";
 const Loginbar = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
+  const [passwordType, setPasswordType] = useState(false);
   const form = useRef();
+
+  const seePassword = () => {
+    setPasswordType((prev) => !prev);
+  };
 
   const sendEmail = (e) => {
     e.preventDefault();
@@ -47,10 +51,10 @@ const Loginbar = () => {
               onChange={(e) => setUsername(e.target.value)}
               required
               type="text"
-              className="focus:border-gray-400 border rounded outline-none  h-[36px] w-[268px] pl-2 text-xs mb-[6px] mx-10 bg-[#FAFAFA] peer transition 
+              className="focus:border-gray-400 border rounded outline-none  h-[36px] w-[268px] pl-2 text-xs  mb-[6px] mx-10 bg-[#FAFAFA] peer transition
           "
             />
-            <span className="absolute h-[18px]  text-[12px] left-12 top-1/2 -translate-y-1/2 peer-valid:top-3 text-gray-500 transition  peer-valid:h-[36px] peer-valid:text-[10px] peer-valid:transition-all pointer-events-none ">
+            <span className="absolute h-[18px]  text-[12px] left-12 top-1/2 -translate-y-1/2 peer-valid:top-3  text-gray-500 transition  peer-valid:h-[36px] peer-valid:text-[10px] peer-valid:transition-all pointer-events-none">
               Telefon numarası, kullanıcı adı veya e-posta
             </span>
           </label>
@@ -60,13 +64,23 @@ const Loginbar = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
-              type="password"
+              type={`${passwordType ? "text" : "password"}`}
               className="focus:border-gray-400  border rounded outline-none  h-[36px] w-[268px] pl-2 text-xs mb-[6px] mx-10 bg-[#FAFAFA] peer transition
           "
             />
-            <span className="absolute h-[18px]  text-[12px] left-12 top-1/2 -translate-y-1/2 peer-valid:top-3 text-gray-500 transition  peer-valid:h-[36px] peer-valid:text-[10px] peer-valid:transition-all pointer-events-none">
+            <span className="absolute h-[18px]  text-[12px] left-12 top-1/2 -translate-y-1/2 peer-valid:top-3 text-gray-500 transition  peer-valid:h-[38px] peer-valid:text-[10px] peer-valid:transition-all pointer-events-none">
               Şifre
             </span>
+            {password.length > 0 ? (
+              <span
+                onClick={seePassword}
+                className="cursor-pointer absolute right-12 text-xs top-1/2 -translate-y-1/2 font-semibold select-none"
+              >
+                Göster
+              </span>
+            ) : (
+              ""
+            )}
           </label>
           {username.length > 0 && password.length > 6 ? (
             <button
@@ -99,7 +113,7 @@ const Loginbar = () => {
             </a>
           </div>
           <div>
-            <span className="text-[12px] text-[#00376B] flex items-center justify-center mt-4">
+            <span className="text-[12px] text-[#00376B] flex items-center justify-center mt-6">
               Şifeni mi unuttun?
             </span>
           </div>

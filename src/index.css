@@ -19,3 +19,42 @@
     height: 16px;
     width: 16px;
 }
+
+
+/* styles.css (veya istediğiniz ad ve yol) */
+
+@keyframes slideAnimation {
+    0% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+    25% {
+      transform: translateX(-10px);
+      opacity: 0.75;
+    }
+    50% {
+      transform: translateX(-20px);
+      opacity: 0.5;
+    }
+    75% {
+      transform: translateX(-10px);
+      opacity: 0.75;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
+  .transition-transform {
+    transition: transform 1s ease-in-out;
+  }
+  
+  .slide-in {
+    animation: slideAnimation 4s ease-in-out infinite;
+  }
+  
+  .transform {
+    transform: translateX(0);
+  }
+  
